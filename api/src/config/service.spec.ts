@@ -1,6 +1,6 @@
+import { DotEnv, ENV } from "./types";
 import { dotEnvMock, envMock } from "../../test/mocks";
 import { ConfigService } from "./service";
-import { ENV } from "./types";
 import dotenv from "dotenv";
 
 jest.mock("dotenv");
@@ -17,11 +17,11 @@ describe("ConfigService", () => {
 
   it("should throw error when .env has invalid key value pair", async () => {
     mockedDotenv.config.mockReturnValue({
-      parsed: { ...dotEnvMock, MANUAL_CRON_JOB_EXECUTION_TOKEN: "" },
+      parsed: { ...dotEnvMock, POSTGRES_DB_URI: "" },
     });
 
     expect(() => new ConfigService()).toThrowError(
-      `⚠️  Errors in .env file in the following keys:\nMANUAL_CRON_JOB_EXECUTION_TOKEN : {\"isLength\":\"MANUAL_CRON_JOB_EXECUTION_TOKEN must be longer than or equal to 8 characters\"}`,
+      `⚠️  Errors in .env file in the following keys:\nPOSTGRES_DB_URI : {\"isLength\":\"POSTGRES_DB_URI must be longer than or equal to 8 characters\"}`,
     );
   });
 
@@ -34,11 +34,8 @@ describe("ConfigService", () => {
   it("should return default envs when their keys don't exist on .env", async () => {
     mockedDotenv.config.mockReturnValue({
       parsed: {
-        OMDBAPI_API_KEY: "12345678",
-        MANUAL_CRON_JOB_EXECUTION_TOKEN: "test-token",
-        DB_URI: "test-uri",
-        SEARCH_DB_URI: "test-search-uri",
-      },
+        POSTGRES_DB_URI: "test-uri",
+      } as DotEnv,
     });
     process.env = { NODE_ENV: "development" };
 

@@ -15,11 +15,11 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "lint:check": "concurrently \"cd api && yarn lint:check\"",
-    "lint:fix": "concurrently \"cd api && yarn lint:fix\"",
+    "lint:check": "concurrently \"cd api && yarn lint:check\" \"cd database && yarn lint:check\"",
+    "lint:fix": "concurrently \"cd api && yarn lint:fix\" \"cd database && yarn lint:fix\"",
     "dev": "yarn && concurrently \"cd api && yarn build:watch\" \"cd api && yarn dev\" \"cd database && yarn build:watch\"",
-    "test": "concurrently \"cd api && yarn test\"",
-    "test:cov": "concurrently \"cd api && yarn test:cov\"",
+    "test": "concurrently \"cd api && yarn test\" \"cd database && yarn test\"",
+    "test:cov": "concurrently \"cd api && yarn test:cov\" \"cd database && yarn test:cov\"",
     "db:up":"cd api && yarn db:up && cd ..",
     "db:down":"cd api && yarn db:down && cd ..",
     "postinstall": "(husky install && husky set .husky/pre-commit \"cd api && yarn lint-staged && cd ../database && yarn lint-staged\") || exit 0"

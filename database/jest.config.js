@@ -12,5 +12,5 @@ module.exports = {
   transform: {
     "^.+\\.(ts)?$": "ts-jest",
   },
-  coveragePathIgnorePatterns: ["node_modules"],
+  coveragePathIgnorePatterns: ["node_modules", "src/entity", "src/migration"],
 };
