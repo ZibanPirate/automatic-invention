@@ -1,0 +1,60 @@
+{
+  "name": "@ai/database",
+  "version": "1.0.0",
+  "description": "automatic-invention database code",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "lint:check": "yarn prettier:check && yarn eslint:check",
+    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
+    "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
+    "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
+    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
+    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "db": "ts-node --transpile-only ../node_modules/typeorm/cli.js",
+    "db:up": "yarn postgres:up && yarn waitfor:db && yarn db migration:run",
+    "postgres:up": "docker-compose up -d",
+    "db:down": "yarn postgres:down",
+    "postgres:down": "docker-compose down --remove-orphans",
+    "waitfor:db": "ts-node -r dotenv/config utils/wait-for-db.ts",
+    "test": "jest src",
+    "test:watch": "jest --watchAll src",
+    "test:cov": "jest --coverage src",
+    "test:cov:watch": "jest --coverage --watchAll src"
+  },
+  "lint-staged": {
+    "*.*": [
+      "eslint --quiet --fix --ignore-path .eslintignore",
+      "prettier --write --ignore-path ./.prettierignore"
+    ]
+  },
+  "dependencies": {
+    "dotenv": "^9.0.0",
+    "pg": "^8.6.0",
+    "reflect-metadata": "^0.1.13",
+    "typedi": "^0.10.0",
+    "typeorm": "^0.2.32",
+    "typeorm-typedi-extensions": "^0.4.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.0.2",
+    "@types/pg": "^7.14.11",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
+    "dotenv-cli": "^4.0.0",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-unicorn": "^31.0.0",
+    "jest": "^26.6.3",
+    "jest-mock-extended": "^1.0.14",
+    "lint-staged": "^10.5.3",
+    "pg": "^8.6.0",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.5",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
