@@ -1,10 +1,10 @@
-import { Controller, Get } from "routing-controllers";
+import { Get, JsonController } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { GeneralResponse } from "../app/types";
 import { Service } from "typedi";
 
 @Service()
-@Controller("/Health")
+@JsonController("/Health")
 export class HealthController {
   @Get("/")
   @OpenAPI({ summary: "Check if server is up" })

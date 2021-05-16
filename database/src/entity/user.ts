@@ -1,27 +1,18 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
-import { IsEmail, IsNumber, Length } from "class-validator";
+import { DBRecordEntity, Name } from "./basis";
+import { IsDefined, IsEmail, ValidateNested } from "class-validator";
+import { Column } from "typeorm";
 import { Service } from "typedi";
-
-class Name {
-  @Column()
-  @Length(2, 54)
-  first!: string;
-
-  @Column()
-  @Length(2, 54)
-  last!: string;
-}
+import { Type } from "class-transformer";
 
 @Service()
-export class UserEntity {
-  @PrimaryGeneratedColumn()
-  @IsNumber()
-  id!: number;
-
+export class UserEntity extends DBRecordEntity {
   @Column({ unique: true, primary: true })
   @IsEmail()
   email!: string;
 
   @Column(() => Name)
+  @ValidateNested()
+  @Type(() => Name)
+  @IsDefined()
   name!: Name;
 }
