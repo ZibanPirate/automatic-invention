@@ -13,7 +13,7 @@ const bootstrap = async () => {
   const { NODE_ENV, PORT, POSTGRES_DB_URI } =
     Container.get(ConfigService).env();
   await setupDB(POSTGRES_DB_URI, {
-    databasePath: join(__dirname, "../database/src"),
+    databasePath: join(__dirname, "../../../database/dist"),
   });
   const loggerService = Container.get(LoggerService);
 

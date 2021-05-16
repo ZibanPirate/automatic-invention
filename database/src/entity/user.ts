@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
-import { IsNumber, IsEmail, Length } from "class-validator";
+import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { IsEmail, IsNumber, Length } from "class-validator";
 import { Service } from "typedi";
 
 class Name {
@@ -18,7 +18,7 @@ export class UserEntity {
   @IsNumber()
   id!: number;
 
-  @PrimaryColumn()
+  @Column({ unique: true, primary: true })
   @IsEmail()
   email!: string;
 
