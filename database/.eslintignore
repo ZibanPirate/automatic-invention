@@ -1,0 +1,6 @@
+coverage
+dist
+*.*
+!*.ts
+!*.js
+!*.json

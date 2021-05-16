@@ -1,0 +1,19 @@
+version: "3"
+services:
+  local-db:
+    image: "postgres:latest"
+    ports:
+      - "6060:5432"
+    environment:
+      POSTGRES_USER: "test"
+      POSTGRES_PASSWORD: "test"
+      POSTGRES_DB: "dev"
+
+  test-db:
+    image: "postgres:latest"
+    ports:
+      - "6161:5432"
+    environment:
+      POSTGRES_USER: "test"
+      POSTGRES_PASSWORD: "test"
+      POSTGRES_DB: "test"
