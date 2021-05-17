@@ -5,9 +5,9 @@ export class GeneralResponse {
   @IsOptional()
   code?: number;
 
-  @IsString()
+  @IsString({ each: true })
   @IsOptional()
-  msg?: string;
+  msg?: string | string[];
 
   @IsObject()
   @IsOptional()

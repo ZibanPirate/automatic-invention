@@ -31,6 +31,8 @@
     ]
   },
   "dependencies": {
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "dotenv": "^9.0.0",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",

@@ -6,7 +6,7 @@ import Container from "typedi";
 import { LoggerService } from "../logger/service";
 import { createExpressServer } from "routing-controllers";
 import { join } from "path";
-import { routingControllersOptions } from "./middlewares";
+import { routingControllersOptions } from "./router";
 import { setupDB } from "@ai/database/dist";
 
 const bootstrap = async () => {
