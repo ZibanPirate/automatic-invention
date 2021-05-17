@@ -1,5 +1,5 @@
 import { Column, PrimaryGeneratedColumn } from "typeorm";
-import { Length } from "class-validator";
+import { IsNumber, Length } from "class-validator";
 import { Service } from "typedi";
 
 @Service()
@@ -16,5 +16,6 @@ export class Name {
 @Service()
 export class DBRecordEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  @IsNumber()
+  id?: number;
 }

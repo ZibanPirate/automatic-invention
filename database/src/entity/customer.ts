@@ -12,5 +12,5 @@ export class CustomerEntity extends UserEntity {
 
   @Column()
   @Matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,256}$/)
-  password!: string;
+  password?: string;
 }
